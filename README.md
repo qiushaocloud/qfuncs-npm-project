@@ -139,7 +139,7 @@
 import {IQMethods} from '@src/qfuncs/qfuncs.i';
 import qFuncs from '@src/qfuncs';
 import CustomEventManager, {moduleEventInstance, ICustomEventManager} from '@common/custom-event-manager';
-import {SDKVERSIONS, SDKVERSIONSTIME} from '@enum/version';
+import {VERSIONS, VERSIONSTIME} from '@enum/version';
 
 export {
   ICustomEventManager,
@@ -150,8 +150,8 @@ export {
   moduleEventInstance,
   CustomEventManager,
   qFuncs,
-  SDKVERSIONS,
-  SDKVERSIONSTIME
+  VERSIONS,
+  VERSIONSTIME
 };
 
 export default qFuncs;
