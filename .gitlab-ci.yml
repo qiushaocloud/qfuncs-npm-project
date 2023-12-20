@@ -1,7 +1,6 @@
 stages:
   - sync-code
-  - build
-  - deploy
+  - build-publish-npmjs
 
 sync-code:
   stage: sync-code
@@ -20,22 +19,12 @@ sync-code:
   tags:
     - qiushaocloud-runner
 
-build:
-  stage: build
+build-publish-npmjs:
+  stage: build-publish-npmjs
   only:
-    - master
+    - tag
   script:
-    - cd redis-cluster-image && sh build-docker.sh
+    - npm install
+    - npm run sync-version && npm run build && npm run publish-npmjs
   tags:
     - qiushaocloud-runner
-
-deploy:
-  stage: deploy
-  only:
-    - master
-  script:
-    - docker login --username $DOCKER_HUB_USER_NAME --password $DOCKER_HUB_USER_PASSWORD
-    - cd redis-cluster-image && sh push-docker.sh
-  tags:
-    - qiushaocloud-runner
-  
