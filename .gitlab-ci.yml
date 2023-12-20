@@ -26,6 +26,7 @@ build-publish-npmjs:
   script:
     - apk add --no-cache nodejs npm
     - node -v && npm -v
+    - npm install -g nrm
     - npm install
     - npm run sync-version && npm run build && npm run publish-npmjs
   tags:
