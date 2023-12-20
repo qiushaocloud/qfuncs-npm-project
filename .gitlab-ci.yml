@@ -22,7 +22,7 @@ sync-code:
 build-publish-npmjs:
   stage: build-publish-npmjs
   only:
-    - tag
+    - tags
   script:
     - npm install
     - npm run sync-version && npm run build && npm run publish-npmjs
