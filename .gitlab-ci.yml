@@ -24,6 +24,7 @@ build-publish-npmjs:
   only:
     - tags
   script:
+    - apt update && apt install -y nodejs
     - npm install
     - npm run sync-version && npm run build && npm run publish-npmjs
   tags:
