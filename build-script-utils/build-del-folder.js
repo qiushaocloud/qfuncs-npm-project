@@ -33,8 +33,7 @@ const rmdir = (dirpath)=>{
 }
 
 const dirpaths = [
-    path.resolve(__dirname, '../dist'),
-    path.resolve(__dirname, '../var')
+    path.resolve(__dirname, '../dist')
 ];
 
 for(const dirpath of dirpaths){

@@ -1,14 +1,13 @@
 {
   "name": "@qiushaocloud/qfuncs",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "this is an npm package of qiushaocloud encapsulation of functional methods",
   "author": "qiushaocloud",
   "license": "MIT",
   "scripts": {
-    "build-rewrite": "node ./build-script-utils/rewrite-file.js",
     "build-copy": "node ./build-script-utils/build-copy-file.js  && node ./build-script-utils/build-copy-folder.js",
     "build-clear": "node ./build-script-utils/build-del-folder.js",
-    "build": "npm run build-clear && tsc --project tsconfig.json && tsc-alias --project tsconfig.json && npm run build-copy && npm run build-rewrite",
+    "build": "npm run build-clear && tsc --project tsconfig.json && tsc-alias --project tsconfig.json && npm run build-copy",
     "tsnode-serve": "ts-node --files -r tsconfig-paths/register src/main.ts",
     "tsnodedev-serve": "ts-node-dev --files -r tsconfig-paths/register src/main.ts",
     "lint": "npx eslint --fix --ext .ts src && tsc --project tsconfig.json",

@@ -1,3 +1,5 @@
+import {IJson, IJsonT} from '@typings-interface/object';
+
 export interface IQCheckType {
   isNumber(num: any, isAllowNumStr?: boolean): boolean;
   isString(str: any): boolean;

@@ -37,9 +37,7 @@ const copyFile = (srcFilePath, destDir, destFileName)=>{
 
 const copyFilePaths = [
     [path.resolve(__dirname, '../build-after-file/package.json'), path.resolve(__dirname, '../dist'), 'package.json'],
-    [path.resolve(__dirname, '../build-after-file/README.md'), path.resolve(__dirname, '../dist'), 'README.md'],
-    [path.resolve(__dirname, '../src/log/logcfg.json'), path.resolve(__dirname, '../dist/src/log'), 'logcfg.json'],
-    [path.resolve(__dirname, '../src/typings.d.ts'), path.resolve(__dirname, '../dist/src'), 'typings.d.ts'],
+    [path.resolve(__dirname, '../build-after-file/README.md'), path.resolve(__dirname, '../dist'), 'README.md']
 ];
 
 for(const copyFilePath of copyFilePaths){

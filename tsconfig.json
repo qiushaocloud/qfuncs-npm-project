@@ -13,6 +13,7 @@
         "paths": {
             "@enum/*":["src/enum/*"],
             "@common/*":["src/common/*"],
+            "@typings-interface/*":["src/typings-interface/*"],
             "@src/*":["src/*"]
         },
         "esModuleInterop": true,
@@ -21,7 +22,6 @@
     },
     "include": [
         "src/**/*",
-        "typings/*.d.ts",
         "test/**/*"
     ],
     "exclude": [

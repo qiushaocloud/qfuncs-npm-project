@@ -42,7 +42,6 @@ function copyFile(from, to) {
 
 
 const dirpaths = [
-    [path.resolve(__dirname, '../typings'), path.resolve(__dirname, '../dist/typings')]
 ];
 
 for(const dirpath of dirpaths){

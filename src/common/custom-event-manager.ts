@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
+import {IFnAnyArgs} from '@typings-interface/fn';
+import {IJson} from '@typings-interface/object';
+
 /** 自定义事件类接口 */
 export interface ICustomEventManager{
   on(eventType:string, listener: IFnAnyArgs, markid?: string | number): void;

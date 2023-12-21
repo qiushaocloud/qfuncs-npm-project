@@ -152,7 +152,6 @@
 * main.ts 代码，根据代码能知道导出了哪些东西
 ```typescript
 // eslint-disable-next-line spaced-comment, @typescript-eslint/triple-slash-reference
-/// <reference path="./typings.d.ts" />
 
 import {IQMethods} from '@src/qfuncs/qfuncs.i';
 import qFuncs from '@src/qfuncs';
