@@ -16,6 +16,7 @@ sync-code:
     - git clone ssh://git@gitlab.qiushaocloud.top:61023/qiushaocloud/$GIT_NAME_DIR.git
     - cd $GIT_NAME_DIR && echo `pwd`
     - sh push-remote-git-repos.sh
+    - echo $CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN
   tags:
     - qiushaocloud-runner
 
@@ -28,6 +29,7 @@ build-publish-npmjs:
     - node -v && npm -v
     - npm install
     - npm run sync-version && npm run build
+    - echo $CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN
     - cp -ra .npmrc.tpl dist/.npmrc && sed -i "s/<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>/$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN/g" dist/.npmrc
     - cd dist && ls -la && cat .npmrc && npm publish --access=public
   tags:
