@@ -16,7 +16,6 @@ sync-code:
     - git clone ssh://git@gitlab.qiushaocloud.top:61023/qiushaocloud/$GIT_NAME_DIR.git
     - cd $GIT_NAME_DIR && echo `pwd`
     - sh push-remote-git-repos.sh
-    - echo $CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN
   tags:
     - qiushaocloud-runner
 
