@@ -1,5 +1,5 @@
 # qfuncs-npm-project
-这是 qfuncs npm 包的源码，主要封装一些功能类方法，例如：deepAssign、deepCopy、isEqualObject、isEqualArray 等
+这是 qfuncs npm 包的源码，主要封装一些功能类方法，用于 nodejs 环境，例如：deepAssign、deepCopy、isEqualObject、isEqualArray 等
 
 ### npm 包
 * 安装 npm 包: `npm install --save @qiushaocloud/qfuncs`
