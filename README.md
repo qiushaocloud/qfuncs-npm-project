@@ -3,6 +3,24 @@
 
 ### npm 包
 * 安装 npm 包: `npm install --save @qiushaocloud/qfuncs`
+* 使用示例
+  ```typescript
+  import '@qiushaocloud/qfuncs';
+  /*
+  import qFuncs, {
+    moduleEventInstance,
+    CustomEventManager,
+    qFuncs,
+    VERSIONS,
+    VERSIONSTIME,
+    ICustomEventManager,
+    IQMethods
+  } from '@qiushaocloud/qfuncs';
+  */
+
+  const obj = {};
+  console.log(qFuncs.isJson(obj));
+  ```
 
 ### 接口文件
 * CustomEventManager 接口定义
@@ -131,7 +149,7 @@
   ```
 
 ### 代码文件
-* main.ts 代码
+* main.ts 代码，根据代码能知道导出了哪些东西
 ```typescript
 // eslint-disable-next-line spaced-comment, @typescript-eslint/triple-slash-reference
 /// <reference path="./typings.d.ts" />
