@@ -2,7 +2,7 @@
 import fs from 'fs';
 import {IQMethods} from './qfuncs.i';
 import QArray from './array';
-import {IJson} from '@typings-interface/object';
+import {IJson} from '@typings-interface/object.i';
 
 class QMethods extends QArray implements IQMethods {
   sleep (ts: number): Promise<void> {

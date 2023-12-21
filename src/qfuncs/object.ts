@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import {IJson, IJsonT} from '@typings-interface/object';
+import {IJson, IJsonT} from '@typings-interface/object.i';
 import QNetwork from './network';
 import {IQObject} from './qfuncs.i';
 

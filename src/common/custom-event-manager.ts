@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import {IFnAnyArgs} from '@typings-interface/fn';
-import {IJson} from '@typings-interface/object';
+import {IFnAnyArgs} from '@typings-interface/fn.i';
+import {IJson} from '@typings-interface/object.i';
 
 /** 自定义事件类接口 */
 export interface ICustomEventManager{
