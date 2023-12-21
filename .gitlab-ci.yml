@@ -31,6 +31,10 @@ build-publish-npmjs:
     - npm run sync-version && npm run build
     - echo $CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN
     - cp -ra .npmrc.tpl dist/.npmrc && sed -i "s/<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>/$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN/g" dist/.npmrc
-    - cd dist && ls -la && cat .npmrc && npm publish --access=public
+    - ls -la dist
+    - cat dist/.npmrc
+    - echo "CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN:$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN"
+    - echo "ggg${CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN}"
+    #- cd dist && ls -la && cat .npmrc && npm publish --access=public
   tags:
     - qiushaocloud-runner
