@@ -1,7 +1,7 @@
 // eslint-disable-next-line spaced-comment, @typescript-eslint/triple-slash-reference
 
 import {IQMethods} from '@src/qfuncs/qfuncs.i';
-import qFuncs from '@src/qfuncs';
+import qFuncs, {QMethods} from '@src/qfuncs';
 import CustomEventManager, {moduleEventInstance, ICustomEventManager} from '@common/custom-event-manager';
 import {VERSIONS, VERSIONSTIME} from '@enum/version';
 
@@ -13,6 +13,7 @@ export {
 export {
   moduleEventInstance,
   CustomEventManager,
+  QMethods,
   qFuncs,
   VERSIONS,
   VERSIONSTIME

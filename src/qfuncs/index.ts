@@ -103,5 +103,7 @@ class QMethods extends QArray implements IQMethods {
   }
 }
 
+export {QMethods};
+
 global.qFuncs = new QMethods();
 export default global.qFuncs;
