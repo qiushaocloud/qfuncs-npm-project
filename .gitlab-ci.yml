@@ -28,6 +28,7 @@ build-publish-npmjs:
     - node -v && npm -v
     - npm install
     - npm run sync-version && npm run build
-    - cd dist && npm publish --registry https://registry.npmjs.org/ --access=public --token=$NPM_QIUSHAOCLOUD_PUBLISH_TOKEN
+    - cp -ra .npmrc.tpl dist/.npmrc && sed -i "s/<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>/$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN/" dist/.npmrc
+    - cd dist && npm publish --access=public
   tags:
     - qiushaocloud-runner
