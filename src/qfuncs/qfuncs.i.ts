@@ -94,7 +94,26 @@ export interface IQNetwork {
   ipv42NumberStr (ipv4: string): string;
 }
 
-export interface IQMethods extends IQCheckType, IQCompare, IQToType, IQDate, IQArray, IQObject, IQNetwork {
+export interface IQFileOrDir {
+  delFile (filePath: string, opts?: {isDelEmptyDir?: boolean}, onCb?: (err?: NodeJS.ErrnoException) => void): void;
+  delFileAsync (filePath: string, opts?: {isDelEmptyDir?: boolean}): Promise<NodeJS.ErrnoException | void>;
+  isDirAddr (url: string): boolean;
+  getFileName (filePath: string): string;
+  getFileSuffix (filePathOrFileName: string): string;
+  isExistsFileOrDir (filePathOrDir: string, onCb: (isExists: boolean) => void): void;
+  isExistsFileOrDirAsync (filePathOrDir: string): Promise<boolean>;
+  deleteIfEmpty (directory: string, onCb?: (err?: Error) => void): void;
+  deleteIfEmptyAsync (directory: string): Promise<Error | void>;
+  getFileSize (filePath: string, onCb: (err?: NodeJS.ErrnoException, fileSize?: number) => void): void;
+  getFileSizeAsync (filePath: string): Promise<number>;
+  mkdirsSync (directory: string): boolean;
+  mkdirsAsync (directory: string): Promise<boolean>;
+}
+
+export interface IQMethods extends
+IQCheckType, IQCompare, IQToType, IQDate,
+IQArray, IQObject, IQNetwork, IQFileOrDir
+{
   /** 延迟执行,需要用 async 和 await 组合实现 */
   sleep (ts: number): Promise<void>;
   /** 随机获取范围内 count 个值 */

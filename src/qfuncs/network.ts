@@ -30,8 +30,7 @@ class QNetwork extends QDate implements IQNetwork {
           break;
       }
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('getIPAddressByNetworkInterface err:', err);
+      this._printlog('error', 'getIPAddressByNetworkInterface err:', err);
     }
 
     return ipAddress;
@@ -72,8 +71,7 @@ class QNetwork extends QDate implements IQNetwork {
         }
       }
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('getNetworkInterfacePrivateIPAddress err:', err);
+      this._printlog('error', 'getNetworkInterfacePrivateIPAddress err:', err);
     }
 
     if ((aIpAddressArr.length + bIpAddressArr.length + cIpAddressArr.length) <= 1)
@@ -113,8 +111,7 @@ class QNetwork extends QDate implements IQNetwork {
           break;
       }
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('getNetworkInterfacePublicIPAddress err:', err);
+      this._printlog('error', 'getNetworkInterfacePublicIPAddress err:', err);
     }
 
     return ipAddress;

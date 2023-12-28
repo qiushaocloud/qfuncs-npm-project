@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import {IQCheckType} from './qfuncs.i';
+import {getLogger} from '@logts';
+const log = getLogger('QMethods');
 
 class QCheckType implements IQCheckType {
   isNumber (num: any, isAllowNumStr?: boolean): boolean {
@@ -64,6 +66,14 @@ class QCheckType implements IQCheckType {
   /** 是否是 Function */
   isFunction (fun: any) {
     return typeof fun === 'function' && Object.prototype.toString.call(fun) === '[object Function]';
+  }
+
+  protected _printlog (method:string, ...args:any[]): void {
+    if ((log as any)[method]) {
+      (log as any)[method](...args);
+    } else { // 没有日志方法
+      log.error(new Error('error stack').stack, '\r\n[logerror] logInstance not find method, methodName:' + method, ...args);
+    }
   }
 }
 

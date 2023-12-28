@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import fs from 'fs';
 import {IQMethods} from './qfuncs.i';
-import QArray from './array';
 import {IJson} from '@typings-interface/object.i';
+import QFileOrDir from './file-dir';
 
-class QMethods extends QArray implements IQMethods {
+class QMethods extends QFileOrDir implements IQMethods {
   sleep (ts: number): Promise<void> {
     return new Promise((resolve)=>{
       setTimeout(()=>{
@@ -40,8 +40,7 @@ class QMethods extends QArray implements IQMethods {
       const fileJsonContent: T = (JSON.parse(fs.readFileSync(filePath, 'utf-8')) as T);
       return this.isJson(fileJsonContent) ? fileJsonContent : undefined;
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('loadJsonFile catch err:', err, ' ,filePath:', filePath);
+      this._printlog('error', 'loadJsonFile catch err:', err, ' ,filePath:', filePath);
     }
   }
 
