@@ -5,6 +5,19 @@ import {IJson} from '@typings-interface/object.i';
 import QFileOrDir from './file-dir';
 
 class QMethods extends QFileOrDir implements IQMethods {
+   getPlatform (): string {
+    if (process.platform === 'win32')
+      return 'Windows';
+
+    if (process.platform === 'linux')
+      return 'Linux';
+
+    if (process.platform === 'darwin')
+      return 'Mac';
+
+    return process.platform;
+  }
+
   sleep (ts: number): Promise<void> {
     return new Promise((resolve)=>{
       setTimeout(()=>{

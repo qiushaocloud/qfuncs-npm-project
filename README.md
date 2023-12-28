@@ -156,6 +156,7 @@
   IQCheckType, IQCompare, IQToType, IQDate,
   IQArray, IQObject, IQNetwork, IQFileOrDir
   {
+    getPlatform(): string; // return Windows | Linux | Mac | ?UnsupportedPlatform
     /** 延迟执行,需要用 async 和 await 组合实现 */
     sleep (ts: number): Promise<void>;
     /** 随机获取范围内 count 个值 */
