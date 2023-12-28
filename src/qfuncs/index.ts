@@ -5,7 +5,7 @@ import {IJson} from '@typings-interface/object.i';
 import QFileOrDir from './file-dir';
 
 class QMethods extends QFileOrDir implements IQMethods {
-   getPlatform (): string {
+  getPlatform (): string {
     if (process.platform === 'win32')
       return 'Windows';
 
