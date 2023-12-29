@@ -31,5 +31,7 @@ build-publish-npmjs:
     - echo $CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN
     - cp -ra .npmrc.tpl dist/.npmrc && sed -i "s/<CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN>/$CI_NPM_QIUSHAOCLOUD_PUBLISH_TOKEN/g" dist/.npmrc
     - cd dist && ls -la && cat .npmrc && npm publish --access=public
+    - rm -rf .npmrc
+    - npm run inner-publish-qiushaocloud-npmjs
   tags:
     - qiushaocloud-runner
