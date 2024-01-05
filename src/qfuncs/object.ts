@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import {IJson, IJsonT} from '@typings-interface/object.i';
 import QNetwork from './network';
 import {IQObject} from './qfuncs.i';
 
 class QObject extends QNetwork implements IQObject {
-  deepAssign (sourceObj:IJson, destObj:IJson): IJson {
-    const changeObj:IJson = {};
+  deepAssign (sourceObj:IQJson, destObj:IQJson): IQJson {
+    const changeObj:IQJson = {};
 
     for (const key in destObj) {
       const sourceVal: unknown = sourceObj[key];
@@ -15,7 +14,7 @@ class QObject extends QNetwork implements IQObject {
         sourceObj[key] = destVal;
         changeObj[key] = destVal;
       } else if (typeof sourceVal === 'object' && typeof destVal === 'object') {
-        const changeObjTmp = this.deepAssign((sourceVal as IJson), (destVal as IJson));
+        const changeObjTmp = this.deepAssign((sourceVal as IQJson), (destVal as IQJson));
         if (Object.keys(changeObjTmp).length) {
           changeObj[key] = changeObjTmp;
         }
@@ -30,12 +29,12 @@ class QObject extends QNetwork implements IQObject {
     return changeObj;
   }
 
-  deepCopy (obj: IJson, isUseRecursive?: boolean): IJson {
+  deepCopy (obj: IQJson, isUseRecursive?: boolean): IQJson {
     if (!(Array.isArray(obj) || this.isPlainObject(obj)))
       return obj;
 
     if (isUseRecursive) {
-      const newObj: IJson = Array.isArray(obj) ? [] : {};
+      const newObj: IQJson = Array.isArray(obj) ? [] : {};
 
       for (const key in obj) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -50,10 +49,10 @@ class QObject extends QNetwork implements IQObject {
       return newObj;
     }
 
-    return (JSON.parse(JSON.stringify(obj)) as IJson);
+    return (JSON.parse(JSON.stringify(obj)) as IQJson);
   }
 
-  hasObjKeys (obj: IJson, keys: string[] | string): boolean {
+  hasObjKeys (obj: IQJson, keys: string[] | string): boolean {
     if (!obj.hasOwnProperty) return false;
 
     if (typeof keys === 'string') {
@@ -69,8 +68,8 @@ class QObject extends QNetwork implements IQObject {
     return false;
   }
 
-  getObjVals (obj: IJson,  keys: string[] | string): IJson {
-    const vals: IJson = {};
+  getObjVals (obj: IQJson,  keys: string[] | string): IQJson {
+    const vals: IQJson = {};
 
     if (typeof keys === 'string') {
       // eslint-disable-next-line no-prototype-builtins
@@ -91,11 +90,11 @@ class QObject extends QNetwork implements IQObject {
     return vals;
   }
 
-  getObjVal<T=any> (obj: IJsonT<T>,  key: string): T | undefined {
+  getObjVal<T=any> (obj: IQJsonT<T>,  key: string): T | undefined {
     return obj[key];
   }
 
-  getObjValWhenEmptySetDef<T=any> (obj: IJsonT<T>, key: string, defaultVal: T): T {
+  getObjValWhenEmptySetDef<T=any> (obj: IQJsonT<T>, key: string, defaultVal: T): T {
     let val = obj[key];
 
     if (val === undefined) {
@@ -106,8 +105,8 @@ class QObject extends QNetwork implements IQObject {
     return val;
   }
 
-  delObjItems (obj: IJson, keys: string[] | string): IJson {
-    const delObj: IJson = {};
+  delObjItems (obj: IQJson, keys: string[] | string): IQJson {
+    const delObj: IQJson = {};
     if (typeof keys === 'string') {
       // eslint-disable-next-line no-prototype-builtins
       if (obj.hasOwnProperty && obj.hasOwnProperty(keys)) {

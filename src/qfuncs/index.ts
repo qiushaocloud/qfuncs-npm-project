@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import fs from 'fs';
 import {IQMethods} from './qfuncs.i';
-import {IJson} from '@typings-interface/object.i';
 import QFileOrDir from './file-dir';
 
 class QMethods extends QFileOrDir implements IQMethods {
@@ -48,7 +47,7 @@ class QMethods extends QFileOrDir implements IQMethods {
     return result;
   }
 
-  loadJsonFile<T=IJson> (filePath: string): T | undefined {
+  loadJsonFile<T=IQJson> (filePath: string): T | undefined {
     try {
       const fileJsonContent: T = (JSON.parse(fs.readFileSync(filePath, 'utf-8')) as T);
       return this.isJson(fileJsonContent) ? fileJsonContent : undefined;
@@ -85,11 +84,11 @@ class QMethods extends QFileOrDir implements IQMethods {
     return this.generateUuid().replace(/-/g, '');
   }
 
-  formatError (error: string | (Error & IJson)): IJson {
+  formatError (error: string | (Error & IQJson)): IQJson {
     try {
       if (typeof error === 'string') return {message: error};
 
-      const errResData: IJson = {};
+      const errResData: IQJson = {};
 
       error.name !== undefined && (errResData.name = error.name);
       error.message !== undefined && (errResData.message = error.message);
