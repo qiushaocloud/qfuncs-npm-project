@@ -1,6 +1,6 @@
 {
   "name": "@qiushaocloud/qfuncs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "this is an npm package of qiushaocloud encapsulation of functional methods",
   "author": "qiushaocloud",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "inner-publish-qiushaocloud-npmjs": "npm publish --registry https://npm.qiushaocloud.top:4873/ --access=public --token=$QIUSHAOCLOUD_SELF_NPMJS_PUBLISH_TOKEN"
   },
   "dependencies": {
-    "@types/qtypings-browser-global": "latest"
+    "@types/qtypings-nodejs-global": "git+https://gitee.com/qiushaocloud/npmjs-dts-types-projects.git#qtypings-nodejs-global"
   },
   "devDependencies": {}
 }
