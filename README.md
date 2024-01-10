@@ -21,6 +21,7 @@
   const obj = {};
   console.log(qFuncs.isJson(obj));
   ```
+<!-- * package.json 依赖 `@types/qtypings-nodejs-global`: `"@types/qtypings-nodejs-global": "git+https://gitee.com/qiushaocloud/npmjs-dts-types-projects.git#qtypings-nodejs-global"` 或 `"@types/qtypings-nodejs-global": "latest"` -->
 
 ### 接口文件
 * CustomEventManager 接口定义

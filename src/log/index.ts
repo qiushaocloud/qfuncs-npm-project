@@ -29,7 +29,7 @@ export const DEFAULT_LEVEL = LogLevel.INFO;
 export const DEFAULT_LEVEL_STR = 'INFO';
 
 const PID = process.pid;
-const logCategoryName2LevelStrs: IQJsonT<string> = {
+const logCategoryName2LevelStrs: QJsonT<string> = {
   'defaultLog': 'INFO'
 };
 
@@ -37,7 +37,7 @@ const forceCustomLogModule = ((global as any).forceCustomLogModule || {}) as {
     setLogMyid?: (logMyidArg: string) => void;
     Log?: ILog;
     // logFactory?: LogFactory;
-} & IQJson;
+} & QJson;
 
 let logMyid = ((global as any).defaultLog4jsMyID as string | undefined) || 'unknownMyid';
 export const setLogMyid = (logMyidArg: string): void => {
@@ -93,8 +93,8 @@ class Log implements ILog {
 
     constructor (loggerCategoryName: string, profixArg?: string) {
       const useLevelKey = logCategoryName2LevelStrs[loggerCategoryName];
-      if (useLevelKey && (LEVEL_MAP as IQJsonT<number>)[useLevelKey] !== undefined) {
-        this.currLevel = (LEVEL_MAP as IQJsonT<number>)[useLevelKey];
+      if (useLevelKey && (LEVEL_MAP as QJsonT<number>)[useLevelKey] !== undefined) {
+        this.currLevel = (LEVEL_MAP as QJsonT<number>)[useLevelKey];
       }
 
       this.loggerCategoryName = loggerCategoryName;
@@ -332,7 +332,7 @@ export const getProfixLog = (logInstance: ILog, profixArg: string, suffixArg?: s
 
 export const setLogLevel = (loggerCategoryName: string, logLevelStr: string): void => {
   if (forceCustomLogModule.Log) return;
-  const logLevelNum = (LEVEL_MAP as IQJsonT<number>)[logLevelStr];
+  const logLevelNum = (LEVEL_MAP as QJsonT<number>)[logLevelStr];
   if (!logLevelStr && logLevelNum !== undefined) return;
   if (logCategoryName2LevelStrs[loggerCategoryName] === logLevelStr) return;
   logCategoryName2LevelStrs[loggerCategoryName] = logLevelStr;
@@ -340,7 +340,7 @@ export const setLogLevel = (loggerCategoryName: string, logLevelStr: string): vo
   logTmp && (logTmp.currLevel = logLevelNum);
 };
 
-export const setLogLevels = (updateLevels: IQJsonT<string>): void => {
+export const setLogLevels = (updateLevels: QJsonT<string>): void => {
   if (forceCustomLogModule.Log) return;
   for (const loggerCategoryName in updateLevels)
     setLogLevel(loggerCategoryName, updateLevels[loggerCategoryName]);
