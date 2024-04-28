@@ -114,13 +114,56 @@ export interface IQFileOrDir {
   mkdirsAsync (directory: string): Promise<boolean>;
 }
 
-export interface IQMethods extends
-IQCheckType, IQCompare, IQToType, IQDate,
-IQArray, IQObject, IQNetwork, IQFileOrDir
-{
-  getPlatform(): string; // return Windows | Linux | Mac | ?UnsupportedPlatform
+export interface IQTimer {
   /** 延迟执行,需要用 async 和 await 组合实现 */
   sleep (ts: number): Promise<void>;
+
+  /** 添加到定时队列
+   * @param queueId 定时队列 id
+   * @param callback 定时器回调函数
+   * @param intervalTs 定时器间隔时间，单位：毫秒
+  */
+  addIntervalQueue (queueId: string, callback: QFnEmptyArgs, intervalTs: number): void;
+
+  /** 从定时队列移除
+   * @param queueId 定时队列 id
+  */
+  removeIntervalQueue (queueId: string): void;
+
+  /** 是否有定时队列任务
+   * @param queueId 定时队列 id
+  */
+  hasIntervalQueue (queueId: string): boolean;
+
+  /** 获取所有定时队列 id
+   * @returns 返回所有定时队列 id
+   */
+  getAllIntervalQueueIds (): string[];
+}
+
+
+export interface IQFunc {
+ /** 防抖函数
+   * @param func 原函数
+   * @param delay 延迟时间
+   * @param immediate 首次触发时是否立即执行
+   * @returns 返回防抖后的函数
+   */
+ debounce(func: QFnAnyArgs, delay: number, immediate?: boolean): QFnAnyArgs;
+
+ /** 节流函数
+  * @param func 原函数
+  * @param delay 延迟时间
+  * @returns 返回节流后的函数
+  */
+ throttle(func: QFnAnyArgs, delay: number): QFnAnyArgs;
+}
+
+export interface IQMethods extends
+IQFunc, IQCheckType, IQCompare, IQToType, IQDate,
+IQTimer, IQArray, IQObject, IQNetwork, IQFileOrDir
+{
+  getPlatform(): string; // return Windows | Linux | Mac | ?UnsupportedPlatform
   /** 随机获取范围内 count 个值 */
   randomRangeValues (start: number, end: number, count?: number): number[];
   loadJsonFile<T=QJson> (filePath: string): T | undefined;
@@ -128,20 +171,6 @@ IQArray, IQObject, IQNetwork, IQFileOrDir
   generateRandomNumberId (): number;
   generateRandomId (isUseNumAndDate?: boolean): string;
   formatError (error: string | Error): QJson;
-  /** 防抖函数
-   * @param func 原函数
-   * @param delay 延迟时间
-   * @param immediate 首次触发时是否立即执行
-   * @returns 返回防抖后的函数
-   */
-  debounce(func: QFnAnyArgs, delay: number, immediate?: boolean): QFnAnyArgs;
-
-  /** 节流函数
-   * @param func 原函数
-   * @param delay 延迟时间
-   * @returns 返回节流后的函数
-   */
-  throttle(func: QFnAnyArgs, delay: number): QFnAnyArgs;
 }
 
 declare global {

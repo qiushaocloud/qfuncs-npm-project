@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import {IQFileOrDir} from './qfuncs.i';
-import QArray from './array';
+import QTimer from './timer';
 
-class QFileOrDir extends QArray implements IQFileOrDir {
+class QFileOrDir extends QTimer implements IQFileOrDir {
   delFile (filePath: string, opts?: {isDelEmptyDir?: boolean}, onCb?: (err?: NodeJS.ErrnoException) => void): void {
     this._printlog('debug', 'call delFile', filePath, opts);
     fs.unlink(filePath, (err) => {
