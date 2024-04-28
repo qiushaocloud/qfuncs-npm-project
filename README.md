@@ -26,20 +26,20 @@
 ### 接口文件
 * CustomEventManager 接口定义
   ```typescript
-    /** 自定义事件类接口 */
-    export interface ICustomEventManager{
-        on(eventType:string, listener: IFnAnyArgs, markid?: string | number): void;
-        once(eventType:string, listener: QFnAnyArgs, markid?: string | number): void;
-        off(eventType:string, listener?: IFnAnyArgs): void;
-        offAll(eventType: string): void;
-        offByMarkId(eventType: string, markid: string | number): void;
-        offAllByMarkId(markid: string | number): void;
-        hasListener(eventType:string): boolean;
-        hasListenerByMarkId(eventType:string, markid: string | number): boolean;
-        trigger(eventType: string, ...args: any[]): void;
-        clearAllEvent(): void;
-        getAllEventTypes(): string[];
-    }
+  /** 自定义事件类接口 */
+  export interface ICustomEventManager{
+    on(eventType:string, listener: IFnAnyArgs, markid?: string | number): void;
+    once(eventType:string, listener: QFnAnyArgs, markid?: string | number): void;
+    off(eventType:string, listener?: IFnAnyArgs): void;
+    offAll(eventType: string): void;
+    offByMarkId(eventType: string, markid: string | number): void;
+    offAllByMarkId(markid: string | number): void;
+    hasListener(eventType:string): boolean;
+    hasListenerByMarkId(eventType:string, markid: string | number): boolean;
+    trigger(eventType: string, ...args: any[]): void;
+    clearAllEvent(): void;
+    getAllEventTypes(): string[];
+  }
   ```
 
 * qFuncs(IQMethods) 接口文件: qfuncs.i.ts
@@ -127,13 +127,13 @@
   }
 
   export interface IQObject {
-    deepAssign (sourceObj:IJson, destObj:IJson): IJson;
-    deepCopy (obj: IJson, isUseRecursive?: boolean): IJson;
-    hasObjKeys (obj: IJson, keys: string[] | string): boolean;
-    getObjVals (obj: IJson, keys: string[] | string): IJson;
-    getObjVal<T=any> (obj: IJsonT<T>,  key: string): T | undefined;
-    getObjValWhenEmptySetDef<T=any> (obj: IJsonT<T>, key: string, defaultVal: T): T;
-    delObjItems (obj: IJson, keys: string[] | string): IJson;
+    deepAssign (sourceObj:QJson, destObj:QJson): QJson;
+    deepCopy (obj: QJson, isUseRecursive?: boolean): QJson;
+    hasObjKeys (obj: QJson, keys: string[] | string): boolean;
+    getObjVals (obj: QJson, keys: string[] | string): QJson;
+    getObjVal<T=any> (obj: QJsonT<T>,  key: string): T | undefined;
+    getObjValWhenEmptySetDef<T=any> (obj: QJsonT<T>, key: string, defaultVal: T): T;
+    delObjItems (obj: QJson, keys: string[] | string): QJson;
   }
 
   export interface IQNetwork {
@@ -160,34 +160,63 @@
     mkdirsAsync (directory: string): Promise<boolean>;
   }
 
-  export interface IQMethods extends
-  IQCheckType, IQCompare, IQToType, IQDate,
-  IQArray, IQObject, IQNetwork, IQFileOrDir
-  {
-    getPlatform(): string; // return Windows | Linux | Mac | ?UnsupportedPlatform
+  export interface IQTimer {
     /** 延迟执行,需要用 async 和 await 组合实现 */
     sleep (ts: number): Promise<void>;
+
+    /** 添加到定时队列
+    * @param queueId 定时队列 id
+    * @param callback 定时器回调函数
+    * @param intervalTs 定时器间隔时间，单位：毫秒
+    */
+    addIntervalQueue (queueId: string, callback: QFnEmptyArgs, intervalTs: number): void;
+
+    /** 从定时队列移除
+    * @param queueId 定时队列 id
+    */
+    removeIntervalQueue (queueId: string): void;
+
+    /** 是否有定时队列任务
+    * @param queueId 定时队列 id
+    */
+    hasIntervalQueue (queueId: string): boolean;
+
+    /** 获取所有定时队列 id
+    * @returns 返回所有定时队列 id
+    */
+    getAllIntervalQueueIds (): string[];
+  }
+
+
+  export interface IQFunc {
+  /** 防抖函数
+    * @param func 原函数
+    * @param delay 延迟时间
+    * @param immediate 首次触发时是否立即执行
+    * @returns 返回防抖后的函数
+    */
+  debounce(func: QFnAnyArgs, delay: number, immediate?: boolean): QFnAnyArgs;
+
+  /** 节流函数
+    * @param func 原函数
+    * @param delay 延迟时间
+    * @returns 返回节流后的函数
+    */
+  throttle(func: QFnAnyArgs, delay: number): QFnAnyArgs;
+  }
+
+  export interface IQMethods extends
+  IQFunc, IQCheckType, IQCompare, IQToType, IQDate,
+  IQTimer, IQArray, IQObject, IQNetwork, IQFileOrDir
+  {
+    getPlatform(): string; // return Windows | Linux | Mac | ?UnsupportedPlatform
     /** 随机获取范围内 count 个值 */
     randomRangeValues (start: number, end: number, count?: number): number[];
-    loadJsonFile<T=IJson> (filePath: string): T | undefined;
+    loadJsonFile<T=QJson> (filePath: string): T | undefined;
     generateUuid (): string;
     generateRandomNumberId (): number;
     generateRandomId (isUseNumAndDate?: boolean): string;
-    formatError (error: string | Error): IJson;
-    /** 防抖函数
-     * @param func 原函数
-     * @param delay 延迟时间
-     * @param immediate 首次触发时是否立即执行
-     * @returns 返回防抖后的函数
-     */
-    debounce(func: QFnAnyArgs, delay: number, immediate?: boolean): QFnAnyArgs;
-
-    /** 节流函数
-     * @param func 原函数
-     * @param delay 延迟时间
-     * @returns 返回节流后的函数
-     */
-    throttle(func: QFnAnyArgs, delay: number): QFnAnyArgs;
+    formatError (error: string | Error): QJson;
   }
 
   declare global {
