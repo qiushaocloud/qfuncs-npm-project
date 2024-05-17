@@ -189,20 +189,23 @@
 
 
   export interface IQFunc {
-  /** 防抖函数
-    * @param func 原函数
-    * @param delay 延迟时间
-    * @param immediate 首次触发时是否立即执行
-    * @returns 返回防抖后的函数
-    */
-  debounce(func: QFnAnyArgs, delay: number, immediate?: boolean): QFnAnyArgs;
+    /** 防抖函数
+      * @description 防抖函数，当一个事件频繁触发时，防抖技术确保在事件触发后的特定时间段内只执行一次相应的操作。如果在此时间段内事件再次触发，则重新计时。
+      * @param func 原函数
+      * @param delay 延迟时间
+      * @param immediate 首次触发时是否立即执行
+      * @returns 返回防抖后的函数
+      */
+    debounce(func: QFnAnyArgs, delay: number, immediate?: boolean): QFnAnyArgs;
 
-  /** 节流函数
-    * @param func 原函数
-    * @param delay 延迟时间
-    * @returns 返回节流后的函数
-    */
-  throttle(func: QFnAnyArgs, delay: number): QFnAnyArgs;
+    /** 节流函数
+      * @description 节流函数，节流技术确保在一定时间间隔内只执行一次操作，即使事件频繁触发。
+      * @param func 原函数
+      * @param delay 延迟时间
+      * @param [trailing] 是否在延迟结束后执行【当 trailing 为 true 时，节流函数在延迟结束后会再次执行一次原函数。如果有连续的函数调用，且时间间隔小于延迟时间 delay，则仅在最后一次调用后的延迟结束时执行原函数】
+      * @returns 返回节流后的函数
+      */
+    throttle(func: QFnAnyArgs, delay: number, trailing?: boolean): QFnAnyArgs;
   }
 
   export interface IQMethods extends
